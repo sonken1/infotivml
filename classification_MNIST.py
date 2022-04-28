@@ -1,6 +1,3 @@
-# MNIST CONV-NET from:
-# https://keras.io/examples/vision/mnist_convnet/
-
 import numpy as np
 from tensorflow import keras
 from tensorflow.keras import layers

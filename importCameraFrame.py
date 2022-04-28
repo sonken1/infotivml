@@ -32,6 +32,7 @@ imgRef = load_img(path, target_size=img_size, color_mode="grayscale")
 imgRef = np.expand_dims(imgRef, 2)
 imgRef = np.expand_dims(imgRef, 0)
 pred = model.predict(imgRef).argmax()
+print("", pred)
 
 while True:
     ## read frames
