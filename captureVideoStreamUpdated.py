@@ -3,7 +3,6 @@ import cv2
 from tensorflow.keras.preprocessing.image import load_img
 from tensorflow.keras.models import load_model
 import time
-import matplotlib.pyplot as plt
 
 cam = cv2.VideoCapture(0)
 model = load_model("./mnist_cnn.h5")
