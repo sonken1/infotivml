@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [[ $# != 2 ]]; then
+    echo "Usage: addFile [inputFile] [outputDir]"
+    exit 1
+fi
+
+rpis=7
+for i in `seq 1 $rpis`
+do
+    rsync -r $1 pi@infotivml$i.local:$2
+done
