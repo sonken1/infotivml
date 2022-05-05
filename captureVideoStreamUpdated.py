@@ -6,9 +6,10 @@ import time
 import matplotlib.pyplot as plt
 
 cam = cv2.VideoCapture(0)
-model = load_model("C:/Users/elias/Documents/infotivml/mnist_cnn.h5")
+model = load_model("./mnist_cnn.h5")
 default_img_size = (28, 28)
-default_path = r"C:/Users/elias/Documents/infotivml/tempImg.jpg"
+default_path = "./tempImg.jpg"
+default_path_orgSize = "./tempImgOrgSz.jpg"
 threshold = 0.1
 
 while True:
@@ -18,6 +19,7 @@ while True:
     if (waitkey & 0xFF == ord("q")) or (waitkey == 27):
         break
     if (waitkey & 0xFF == ord("p")) or (waitkey == 32):
+        cv2.imwrite(default_path_orgSize, img)
         img = cv2.resize(img, default_img_size, interpolation=cv2.INTER_AREA)
         cv2.imwrite(default_path, img)
         time.sleep(1)
@@ -31,13 +33,10 @@ while True:
         predicted_value = pred_array.argmax()
         if pred_array[0][predicted_value] > threshold:
             print("Value: ", predicted_value)
-            loaded_img = cv2.imread(default_path)
+            loaded_img = cv2.imread(default_path_orgSize)
             cv2.imshow("Predicted Value: {}, Probability: {}".format(predicted_value, pred_array[0][predicted_value].round(3)), loaded_img)
-            #plt.imshow(pred_img_init)
-            #plt.title(["Predicted Value: {}, Probability: {}".format(predicted_value, pred_array[0][predicted_value].round(3))])
-            #plt.imshow(pred_img_init/255)
         else:
-            print("Array of probs: ", pred_array)
+            print("Too low prediction certainty! Array of probs: ", pred_array)
 
 
 cam.release()
