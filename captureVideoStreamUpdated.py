@@ -33,7 +33,7 @@ while True:
         if pred_array[0][predicted_value] > threshold:
             print("Value: ", predicted_value)
             loaded_img = cv2.imread(default_path_orgSize)
-            cv2.imshow("Predicted Value: {}, Probability: {}".format(predicted_value, pred_array[0][predicted_value].round(3)), loaded_img)
+            cv2.imshow("Predicted Value: {}, Probability: {}".format(predicted_value, pred_array[0][predicted_value]), loaded_img)
         else:
             print("Too low prediction certainty! Array of probs: ", pred_array)
 
