@@ -25,8 +25,8 @@ while True:
         test_image = cv2.imread(default_path, cv2.IMREAD_GRAYSCALE)
         img_resized = cv2.resize(test_image, (28, 28), interpolation=cv2.INTER_LINEAR)
         img_resized = cv2.bitwise_not(img_resized)
-        # pred_img = cv2.blur(img_resized, (2, 2))  # Går att lägga till
-        pred_img = np.expand_dims(img_resized, 2)   # arg 1 ska vara img_resized
+        pred_img = cv2.blur(img_resized, (2, 3))  # Går att lägga till
+        pred_img = np.expand_dims(pred_img, 2)   # arg 1 ska vara img_resized
         pred_img = np.expand_dims(pred_img, 0)
         pred_array = model.predict(pred_img)
         predicted_value = pred_array.argmax()
@@ -34,6 +34,8 @@ while True:
             print("Value: ", predicted_value)
             loaded_img = cv2.imread(default_path_orgSize)
             cv2.imshow("Predicted Value: {}, Probability: {}".format(predicted_value, pred_array[0][predicted_value]), loaded_img)
+            for idx, val in enumerate(pred_array[0]):
+                print("Probability of {} = {}".format(idx, val))
         else:
             print("Too low prediction certainty! Array of probs: ", pred_array)
 

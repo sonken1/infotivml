@@ -46,9 +46,9 @@ x_test = x_test.astype("float32") / 255
 # We need to make sure to provide nbr of channels (e.g. 3 for rgb, 1 for greyscaled)
 x_train = np.expand_dims(x_train, -1)
 x_test = np.expand_dims(x_test, -1)
-# print("x_train shape:", x_train.shape)
-# print(x_train.shape[0], "train samples")
-# print(x_test.shape[0], "test samples")
+print("x_train shape:", x_train.shape)
+print(x_train.shape[0], "train samples")
+print(x_test.shape[0], "test samples")
 
 # We want y (output/target) to be represented as a binary array (rather than just a int) for each example
 y_train = keras.utils.to_categorical(y_train, num_classes)
