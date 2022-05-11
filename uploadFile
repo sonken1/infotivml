@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [[ $# != 2 ]]; then
+    echo "Usage: uploadFile [Raspberry Pi ID] [Input File]"
+    exit 1
+fi
+
+rsync -r $2 pi@infotivml$1.local:/home/pi/Desktop/
